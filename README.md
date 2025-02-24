@@ -70,7 +70,6 @@
 │ ├── 📂 📝 README.md
 │
 ├── 📂 Dashboard
-├── 📂 📝 README.md
 ├── 📂 StepFuntion 
 ├── 📝 README.md
 └── 📜 .gitignore
