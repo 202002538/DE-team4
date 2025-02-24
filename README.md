@@ -51,8 +51,8 @@
 - **사용자 참여도 및 반응 패턴**
 
 ### 🔗 접근 방법
-- [📊 Tableau 대시보드 링크](dashboard-url)
-- [📊 Streamlit 대시보드 링크](dashboard-url)
+- [📊 Tableau 대시보드](https://github.com/softeer5th/DE-team4-Hoice/tree/main/Dashboard)
+
 
 ---
 
