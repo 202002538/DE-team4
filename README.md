@@ -67,7 +67,8 @@
 │ ├── 📂 event_bridge
 │ ├── 📂 📝 README.md
 │
-├── 📂 Dashboard 
+├── 📂 Dashboard
+├── 📂 📝 README.md
 ├── 📂 StepFuntion 
 ├── 📝 README.md
 └── 📜 .gitignore
