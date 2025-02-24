@@ -50,7 +50,7 @@
 - **주요 키워드 및 감성 분석**
 - **사용자 참여도 및 반응 패턴**
 
-### 🔗 접근 방법
+### Dashboard 상세 설명
 - [📊 Tableau 대시보드](https://github.com/softeer5th/DE-team4-Hoice/tree/main/Dashboard)
 
 
