@@ -50,6 +50,11 @@
 - **주요 키워드 및 감성 분석**
 - **사용자 참여도 및 반응 패턴**
 
+### Alarm
+- 화제도를 기준으로 특정 수치(Threshold)를 초과하면 Slack으로 게시글 알림을 자동으로 전송하는 기능 구현
+![Image](https://github.com/user-attachments/assets/6afcdbde-6628-4283-acfb-0787f890ec06)
+
+
 ### Dashboard 상세 설명
 - [📊 Tableau 대시보드](https://github.com/softeer5th/DE-team4-Hoice/tree/main/Dashboard)
 
