@@ -30,7 +30,7 @@
 ## 👨‍💻 2. 팀원 소개
 <div align="center">
 
-| <img src="https://img.shields.io/badge/Project_Leader-FF5733" /> | <img src="https://img.shields.io/badge/Tech_Leader-%2300264B" /> | <img src="https://img.shields.io/badge/Documentation_Leader-%2310069F%20" /> |
+| DE | DE | DE |
 | :--------------------------------------------------------------: | :--------------------------------------------------------------: | :--------------------------------------------------------------------------: |
 |      <img src="https://avatars.githubusercontent.com/u/89863441?v=4" width="120px;" alt=""/>      |      <img src="https://avatars.githubusercontent.com/u/136967331?v=4" width="120px;" alt=""/>      |            <img src="https://avatars.githubusercontent.com/u/90441461?v=4" width="120px;" alt=""/>            |
 |           [한재웅](https://github.com/Hxxjaewoong)           |           [김태현](https://github.com/SpeOwO)           |                 [이채연](https://github.com/202002538)                 |
