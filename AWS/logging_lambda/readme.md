@@ -28,17 +28,10 @@ Lambda는 Step Function에서 JSON 형식의 오류 로그를 전달받습니다
 }
 ```
 ---
-## **📌 2. 알림 메시지**
+## **📌 2. 알림 메시지 예시**
 Slack으로 전송되는 메시지는 다음과 같은 형식입니다.
 
-
-🚨 **오류 발생!**
-- **발생 시간:** `2025-02-22 14:30`
-- **위치:** `bobae_extract`
-- **단계:** `request_with_retries`
-- **키워드:** `아반떼`
-- **URL:** [https://www.bobaedream.co.kr/view?no=123456](https://www.bobaedream.co.kr/view?no=123456)
-- **오류 메시지:**  
+<img width="590" alt="Image" src="https://github.com/user-attachments/assets/1d0d156e-5717-4c3e-bced-d00855a2d796" />
 
 ---
 ## **🔧 3. 실행 흐름**
