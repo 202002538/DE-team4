@@ -67,7 +67,7 @@
 │ ├── 📂 logging_lambda
 │ ├── 📂 slack_alarm_lambda
 │ ├── 📂 event_bridge
-│ ├── 📂 📝 README.md
+│ └── 📂 📝 README.md
 │
 ├── 📂 Dashboard
 ├── 📂 StepFuntion 
