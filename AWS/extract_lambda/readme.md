@@ -69,7 +69,7 @@ Extract Lambda는 HTML 페이지를 JSON 파일로 저장하며, JSON 파일의 
 ## **5. Lambda 구현 특이사항**
 
 - **동적 크롤링을 위한 Playwright 사용**  
-  동적 웹사이트의 크롤링을 위해 Playwright라는 End-to-End( E2E) 프레임워크를 활용하여 자동화된 크롤링을 구현했습니다.
+  동적 웹사이트의 크롤링을 위해 Playwright라는 End-to-End(E2E) 프레임워크를 활용하여 자동화된 크롤링을 구현했습니다.
 
 - **AWS Lambda 환경의 제약**  
   AWS Lambda는 컨테이너 환경에서 실행되며, 멀티프로세싱을 직접적으로 지원하지 않기 때문에 네트워크 I/O Bound 작업인 크롤링 중에 대기 시간이 길어지면 자원 낭비가 발생할 수 있습니다.
