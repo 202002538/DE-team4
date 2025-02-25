@@ -74,7 +74,14 @@ df_comments = df_comments.filter(F.col("comment").isNotNull())
 df_contents = df_contents.withColumn(
     "datetime", 
     (F.unix_timestamp("datetime", "yyyy-MM-dd HH:mm:ss") * 1000000000)  # 초를 나노초로 변환
+).withColumn(
+    "likes", F.col("likes").cast("int")
+).withColumn(
+    "views", F.col("views").cast("int")
+).withColumn(
+    "comments_count", F.col("comments_count").cast("int")
 )
+
 
 # ----- 3. 화제도(popularity) 계산 -----
 # 기준 데이터 (작은 테이블이므로 브로드캐스트 사용)
