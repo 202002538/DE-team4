@@ -117,6 +117,9 @@ df_comments_grouped = df_comments.groupBy("url") \
 df_merged = df_contents.join(df_comments_grouped, on="url", how="left") \
     .withColumn("comment_agg", F.coalesce(F.col("comment_agg"), F.lit("")))
 
+# 자주 사용할 테이블 캐싱
+df_merged.cache()
+
 # 전체 텍스트 생성: title + content + comment_agg
 df_merged = df_merged.withColumn("text", 
     F.concat_ws(" ", F.col("title"), F.col("content"), F.col("comment_agg"))
@@ -220,35 +223,10 @@ count_occurrences_udf = F.udf(count_occurrences, T.IntegerType())
 df_merged = df_merged.withColumn("positive", count_occurrences_udf(F.col("text"), F.lit(positive_pattern))) \
                      .withColumn("negative", count_occurrences_udf(F.col("text"), F.lit(negative_pattern)))
 
-# df_sentiment: model, url, positive, negative
-df_sentiment = df_merged.select("model", "url", "positive", "negative")
 # text 컬럼은 이후 삭제 (이미 사용한 경우)
 df_merged = df_merged.select("site", "datetime", "model", "title", "url", "popularity", "views", "positive", "negative")
 
-df_keywords.cache()
-# ----- 8. 데이터 집계 -----
-# (1) 소분류별 집계: model, large_category, small_category별 popularity 합계 - live_popularity.parquet
-df_small_category = df_keywords.groupBy("model", "large_category", "small_category") \
-    .agg(F.sum("popularity").alias("popularity_sum")) \
-    .orderBy("model", "large_category")
-
-# (2) 게시글-소분류: df_merged (model, url, title, popularity)와 키워드 테이블의 small_category (중복 제거 후 조인) live_title.parquet
-df_key_url = df_keywords.select("url", "keyword", "small_category", "large_category").dropDuplicates(["url", "small_category"])
-df_post_small_category = df_merged.select("model", "url", "title", "popularity") \
-    .join(df_key_url.select("url", "small_category"), on="url", how="left") \
-    .orderBy("url", F.col("popularity").desc())
-
-# (3) 대분류 감성 집계: df_keywords와 df_sentiment를 조인 후, model, large_category별 positive, negative 합계 live_sentiment.parquet
-df_category_sentiment = df_keywords.join(df_sentiment, on=["model", "url"], how="left") \
-    .groupBy("model", "large_category", "small_category") \
-    .agg(F.sum("positive").alias("positive_sum"),
-         F.sum("negative").alias("negative_sum"))
-
-# (4) 키워드 언급 집계: model, keyword별 popularity 합계
-df_keyword_mentions = df_keywords.groupBy("model", "keyword") \
-    .agg(F.sum("popularity").alias("popularity_sum"))
-
-# (5) popularity 15 이상 게시물 검출
+# 알림용 popularity 15 이상 게시물 검출
 filtered_df = df_contents.select("title", "url", "popularity").filter(F.col("popularity") >= 15)
 # 필터링된 결과가 존재하는지 확인
 if filtered_df.count() > 0:  # 데이터가 있는 경우에만 저장
@@ -256,7 +234,7 @@ if filtered_df.count() > 0:  # 데이터가 있는 경우에만 저장
     # CSV 파일로 저장 (헤더 포함)
     filtered_df.write.mode("overwrite").option("header", "true").csv(alarm_path)
 
-# (5)
+# 적재용 키워드
 df_keyword = df_keywords.select("url", "keyword", "small_category", "large_category")
 
 # save
@@ -264,6 +242,3 @@ output_base = f"s3a://hmg5th-4-bucket/transformed_data/{today}/"
 
 df_merged.write.mode("overwrite").parquet(output_base + "post.parquet")
 df_keyword.write.mode("overwrite").parquet(output_base + "keyword.parquet")
-df_small_category.write.mode("overwrite").parquet(output_base + "live_popularity.parquet")
-df_post_small_category.write.mode("overwrite").parquet(output_base + "live_category.parquet")
-df_category_sentiment.write.mode("overwrite").parquet(output_base + "live_sentiment.parquet")
