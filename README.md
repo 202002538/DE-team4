@@ -34,7 +34,7 @@
 | :--------------------------------------------------------------: | :--------------------------------------------------------------: | :--------------------------------------------------------------------------: |
 |      <img src="https://avatars.githubusercontent.com/u/89863441?v=4" width="120px;" alt=""/>      |      <img src="https://avatars.githubusercontent.com/u/136967331?v=4" width="120px;" alt=""/>      |            <img src="https://avatars.githubusercontent.com/u/90441461?v=4" width="120px;" alt=""/>            |
 |           [한재웅](https://github.com/Hxxjaewoong)           |           [김태현](https://github.com/SpeOwO)           |                 [이채연](https://github.com/202002538)                 |
-|    **웹 크롤링 자동화** <br> **Spark Job 최적화**    |    **Dashboard 시각화** <br> **EMR Cluster 구축**    | **파이프라인 안정성 확보** <br> **AWS Architecture** |
+|    **웹 크롤링 자동화** <br> **Spark Job 최적화**    |   **파이프라인 안정성 확보** <br> **AWS Architecture**      | **Dashboard 시각화** <br> **EMR Cluster 구축** |
 
 </div>
 
