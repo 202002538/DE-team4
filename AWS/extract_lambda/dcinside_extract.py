@@ -96,8 +96,8 @@ def get_htmls(keyword, hrefs, result, is_failed):
                 continue  # 다음 href로 넘어감
         
         browser.close()  # 브라우저 종료
-    if not is_failed:
-        get_htmls(keyword, failed_href_list, result, True)
+    if failed_href_list and is_failed < 3:
+        get_htmls(keyword, failed_href_list, result, is_failed+1)
     result.update(js)
 
 # S3에 저장
@@ -175,7 +175,7 @@ def handler(event, context):
         result = manager.dict()
         processes = []
         for key, value in result_href_list.items():
-            process = Process(target=get_htmls, args=(key, value, result, False))
+            process = Process(target=get_htmls, args=(key, value, result, 0))
             processes.append(process)
             process.start()
         for process in processes:

@@ -74,8 +74,8 @@ def get_htmls(keyword, hrefs, result, is_failed):
                     print("error on", url)
                     continue
             time.sleep(0.75)
-    if failed_href_list and not is_failed:
-        get_htmls(keyword, failed_href_list, result, True)
+    if failed_href_list and is_failed < 3:
+        get_htmls(keyword, failed_href_list, result, is_failed+1)
     result.update(js)
             
 def get_list(keywords, end_date, keyword_dict):
@@ -154,7 +154,7 @@ def handler(event, context):
         result = manager.dict()
         processes = []
         for key, value in result_href_list.items():
-            process = Process(target=get_htmls, args=(key, value, result, False))
+            process = Process(target=get_htmls, args=(key, value, result, 0))
             processes.append(process)
             process.start()
         for process in processes:
